@@ -12,17 +12,24 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
 
+const DEFAULT_COMPILER_SETTINGS = {
+  version: '0.7.6',
+  settings: {
+    evmVersion: 'istanbul',
+    optimizer: {
+      enabled: true,
+      runs: 1_000_000,
+    },
+    metadata: {
+      bytecodeHash: 'none',
+    },
+  },
+}
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
-    compilers: [
-      {version: "0.5.5"},
-      {version: "0.6.6"},
-      {version: "0.8.8"},
-      {version: "0.8.16"},
-      {version: "0.6.0"},
-      {version: "0.7.6"},
-    ],
+    compilers: [DEFAULT_COMPILER_SETTINGS],
   },
   defaultNetwork: "hardhat",
   networks: {
